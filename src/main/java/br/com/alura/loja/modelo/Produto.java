@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 //Mapeamento de entidade
@@ -26,9 +27,17 @@ public class Produto {
 	private String descricao;
 	private BigDecimal preco;
 	private LocalDate dataCadastro = LocalDate.now();
-	@Enumerated(EnumType.STRING)
+	//Cardinalidade muitos pra um
+	@ManyToOne
 	private Categoria categoria;
 	
+	
+	public Produto() {
+
+	}
+
+
+
 	public Produto(String nome, String descricao, BigDecimal Preco, Categoria categoria ) {
 		this.nome = nome;
 		this.descricao = descricao;
@@ -62,6 +71,11 @@ public class Produto {
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	
 	
 	
 	
