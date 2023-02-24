@@ -84,6 +84,10 @@ public class ItemPedido {
 		return "ItemPedido [id=" + id + ", precoUnitario=" + precoUnitario + ", quantidade=" + quantidade + ", pedido="
 				+ pedido + ", produto=" + produto + "]";
 	}
+
+	public BigDecimal getValor() {
+		return precoUnitario.multiply(new BigDecimal(quantidade));
+	}
 	
 	
 	

@@ -23,6 +23,7 @@ public class CadastroDePedido {
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDAO produtoDAO = new ProdutoDAO(em);
 		Produto produto = produtoDAO.buscarPorId(1l);
+//		System.out.println(produto.getPreco()+" - Tá funfando");
 		em.getTransaction().begin();
 		Cliente cliente = new Cliente("Gabriel", "123456");
 		
@@ -36,12 +37,12 @@ public class CadastroDePedido {
 		PedidoDAO pedidoDAO = new PedidoDAO(em);
 		pedidoDAO.cadastrar(pedido);
 		
+		
+		
 		em.getTransaction().commit();
 		
-		
-		
-		
-		
+		BigDecimal totalVendido = pedidoDAO.valorTotalVendido();
+		System.out.println("valor total: "+totalVendido);
 
 	}
 	
@@ -58,7 +59,7 @@ public class CadastroDePedido {
 		categoriaDAO.adicionarCategoria(celulares);
 		produtoDAO.cadastrar(celular);
 		Produto buscarPorId = produtoDAO.buscarPorId(1l);
-		System.out.println(buscarPorId.getNome()+" - "+buscarPorId.getDescricao());
+//		System.out.println(buscarPorId.getNome()+" - "+buscarPorId.getDescricao()+" - "+buscarPorId.getPreco());
 		
 		em.getTransaction().commit();;
 		em.close();
