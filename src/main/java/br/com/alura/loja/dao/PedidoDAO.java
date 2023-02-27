@@ -58,6 +58,13 @@ public class PedidoDAO {
 				.getResultList();
 	}
 	
+	//carregar um relacionamento que é lazy fazendo join pelo fetch
+	public Pedido buscarPedidoComCliente(Long id) {
+		return em.createQuery("SELECT p from Pedido p JOIN FETCH p.cliente where p.id = :id",Pedido.class)
+				.setParameter("id", id)
+				.getSingleResult();
+	}
+	
 	
 	
 
